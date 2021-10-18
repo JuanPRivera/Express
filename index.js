@@ -19,9 +19,28 @@ const app = express();
     next();
 } */
 
+
+//Settings
+
+app.set('appName', 'Express tutorial');
+app.set('PORT', 4000);
+
+
+//Middlewares
+
+
 app.use(express.json());
 //app.use(logger);
 app.use(morgan('dev'));
+
+
+//Routes
+
+
+/* app.all('user', (req, res, next) => {
+    console.log(`I'm here`);
+    next();
+}) */
 
 /* app.get('/', (req, res) => {
     res.send('PETITION GET RECEIVED');
@@ -60,6 +79,7 @@ app.delete('/user/:id', (req, res) => {
 
 app.use(express.static('public'));
 
-app.listen(3000, () => {
-    console.log('Server on port 3000');
+app.listen(app.get('PORT'), () => {
+    console.log(app.get('appName'));
+    console.log('Server on port', app.get('PORT'));
 })
